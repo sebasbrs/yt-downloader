@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, send_file, url_for
+from flask import Flask, request, jsonify, send_file, url_for, render_template
 from flask_cors import CORS
 from pytubefix import YouTube
 import os
@@ -31,6 +31,10 @@ def limpiar_nombre_archivo(nombre):
     nombre = unicodedata.normalize("NFKD", nombre).encode("ascii", "ignore").decode("ascii")
     nombre = re.sub(r"[^\w\s.-]", "", nombre)  # Eliminar cualquier carácter extraño
     return nombre
+
+@app.route('/')
+def index():
+    return render_template("index.html")
 
 @app.route('/download', methods=['POST'])
 def download_video():
