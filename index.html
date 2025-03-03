@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descargar Videos de YouTube</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Descargar Video o Audio de YouTube</h2>
+    
+    <input type="text" id="url" placeholder="Ingrese la URL del video" size="50">
+    <br>
+    <label>
+        <input type="checkbox" id="solo_audio"> Descargar solo audio
+    </label>
+    <br>
+    <button onclick="descargar()">Obtener enlace de descarga</button>
+
+    <p id="mensaje"></p>
+    
+    <script>
+        async function descargar() {
+    const url = document.getElementById("url").value;
+    const soloAudio = document.getElementById("solo_audio").checked;
+    const mensaje = document.getElementById("mensaje");
+
+    if (!url) {
+        mensaje.innerHTML = "⚠️ Ingresa una URL válida.";
+        return;
+    }
+
+    mensaje.innerHTML = "⏳ Procesando...";
+
+    try {
+        const response = await fetch("http://127.0.0.1:5000/download", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ url, solo_audio: soloAudio })
+        });
+
+        const data = await response.json();
+        if (!data.download_url) {
+            mensaje.innerHTML = "❌ Error al obtener el enlace.";
+            return;
+        }
+
+        // 🔹 Ahora descargamos el archivo correctamente evitando problemas de CORS
+        mensaje.innerHTML = "📥 Descargando...";
+
+        const fileResponse = await fetch(data.download_url, {
+            method: "GET",
+            headers: { "Accept": "application/octet-stream" }
+        });
+
+        const blob = await fileResponse.blob();
+
+        // Obtener el nombre del archivo desde el backend
+        const filename = data.download_url.split("/").pop(); 
+
+        // Crear un enlace temporal y forzar la descarga
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        mensaje.innerHTML = "✅ Descarga completada.";
+
+    } catch (error) {
+        mensaje.innerHTML = "❌ Error de conexión.";
+    }
+}
+
+    </script>
+</body>
+</html>
