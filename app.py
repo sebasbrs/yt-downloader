@@ -46,7 +46,7 @@ def download_video():
         return jsonify({"error": "No URL provided"}), 400
 
     try:
-        yt = YouTube(url, 'ANDROID')
+        yt = YouTube(url, 'ANDROID',use_po_token=True)
         if solo_audio:
             stream = yt.streams.get_audio_only()
             filename = f"{yt.title}.mp3"
