@@ -21,11 +21,6 @@ EXPIRATION_TIME = 300  # 5 minutos
 
 os.makedirs(DOWNLOAD_FOLDER, exist_ok=True)
 
-def generar_firma(filename, expiration):
-    """Genera una firma HMAC para validar la URL de descarga."""
-    mensaje = f"{filename}:{expiration}"
-    firma = hmac.new(SECRET_KEY.encode(), mensaje.encode(), hashlib.sha256).digest()
-    return base64.urlsafe_b64encode(firma).decode()
 def limpiar_nombre_archivo(nombre):
     """Elimina caracteres Unicode y especiales del nombre del archivo."""
     nombre = unicodedata.normalize("NFKD", nombre).encode("ascii", "ignore").decode("ascii")
