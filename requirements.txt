@@ -1,0 +1,5 @@
+Flask
+pytubefix
+werkzeug
+shutil
+gunicorn
