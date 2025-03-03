@@ -1,3 +1,4 @@
+from werkzeug.middleware.proxy_fix import ProxyFix
 from flask import Flask, request, jsonify, send_file, url_for, render_template
 from flask_cors import CORS
 from pytubefix import YouTube
@@ -14,9 +15,8 @@ import re
 
 app = Flask(__name__)
 CORS(app)
-app.config['PREFERRED_URL_SCHEME'] = 'https'
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1)
 DOWNLOAD_FOLDER = "downloads"
-SECRET_KEY = "YTDOWN2025SGD"  # Cambia esto por una clave segura
 EXPIRATION_TIME = 300  # 5 minutos
 
 os.makedirs(DOWNLOAD_FOLDER, exist_ok=True)
