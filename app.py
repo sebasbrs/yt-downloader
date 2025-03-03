@@ -14,7 +14,7 @@ import re
 
 app = Flask(__name__)
 CORS(app)
-
+app.config['PREFERRED_URL_SCHEME'] = 'https'
 DOWNLOAD_FOLDER = "downloads"
 SECRET_KEY = "YTDOWN2025SGD"  # Cambia esto por una clave segura
 EXPIRATION_TIME = 300  # 5 minutos
@@ -56,7 +56,6 @@ def download_video():
 
         file_path = os.path.join(DOWNLOAD_FOLDER, filename)
         stream.download(output_path=DOWNLOAD_FOLDER, filename=filename)
-        app.config['PREFERRED_URL_SCHEME'] = 'https'
         download_url = url_for('get_file', filename=filename, _external=True)
 
         return jsonify({"download_url": download_url})
