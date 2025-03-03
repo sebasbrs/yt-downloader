@@ -56,11 +56,7 @@ def download_video():
 
         file_path = os.path.join(DOWNLOAD_FOLDER, filename)
         stream.download(output_path=DOWNLOAD_FOLDER, filename=filename)
-
-        # 🔹 Generar una URL con firma y expiración
-        expiration = int(time.time()) + EXPIRATION_TIME
-        signature = generar_firma(filename, expiration)
-        download_url = url_for('get_file', filename=filename, expiration=expiration, signature=signature, _external=True)
+        download_url = url_for('get_file', filename=filename, _external=True)
 
         return jsonify({"download_url": download_url})
 
