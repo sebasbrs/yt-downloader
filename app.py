@@ -1,6 +1,5 @@
-from flask import Flask, request, jsonify, Response
+from flask import Flask, request, jsonify, redirect
 from pytubefix import YouTube
-import os
 
 app = Flask(__name__)
 
@@ -14,23 +13,14 @@ def download_video():
         return jsonify({"error": "No URL provided"}), 400
 
     try:
-        yt = YouTube(url, 'MWEB')
+        yt = YouTube(url, 'ANDROID')  # Cambiamos 'MWEB' a 'ANDROID' para evitar el error del PoToken
         if solo_audio:
-            ys = yt.streams.get_audio_only()
+            stream = yt.streams.get_audio_only()
         else:
-            ys = yt.streams.get_highest_resolution()
+            stream = yt.streams.get_highest_resolution()
 
-        def generate():
-            with ys.stream() as stream:
-                while chunk := stream.read(1024 * 1024):  # Lee en bloques de 1MB
-                    yield chunk
-
-        filename = f"{yt.title}.{'mp3' if solo_audio else 'mp4'}"
-        content_type = "audio/mpeg" if solo_audio else "video/mp4"
-
-        return Response(generate(), content_type=content_type, headers={
-            "Content-Disposition": f"attachment; filename={filename}"
-        })
+        # Redirigir al usuario a la URL directa del archivo en YouTube
+        return jsonify({"download_url": stream.url})
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
