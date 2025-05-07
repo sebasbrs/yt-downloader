@@ -27,3 +27,11 @@ nav {
     background-color: #178b3a;
     border-color: #147731;
 }
+
+.paypal {
+    text-align: center;
+    border-color: black;    
+    border-width: 2px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+}

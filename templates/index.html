@@ -29,13 +29,13 @@
         <div class="mx-auto d-lg-none d-xl-block d-xl-none">
             <ins class="eas6a97888e10" data-zoneid="5606116"></ins> 
         </div>
-        <div class="col-lg-8 col-md-12 col-sm-12 text-center">
+        <div class="col-lg-8 col-md-12 col-sm-12 text-center mx-auto">
             <div class="" id="yt-card">
                 <div class="card" id="logos" >
-                    <div class="card-body" id="yt-card-body-pre" style="display: block;">
+                    <div class="card-body mx-auto" id="yt-card-body-pre" style="display: block;">                   
                         <a href="javascript:card.youtube();"><img src="{{ url_for('static', filename='images/youtube.svg') }}" alt="Logo Youtube" class="img-fluid logos mx-auto" id="logo"/></a>
                     </div>
-                    <div class="card-body" id="yt-card-body-post" style="display:none;">
+                    <div class="card-body mx-auto" id="yt-card-body-post" style="display:none;">
                         <img src="{{ url_for('static', filename='images/youtube.svg') }}" alt="Logo Youtube" class="img-fluid logos mx-auto" id="logo"/>
                         <h2>Descargar Video o Audio de YouTube</h2>    
                         <form id="yt-form" action="" onsubmit="return download.youtube(event)">
@@ -48,7 +48,7 @@
                             <button type="submit" class="btn btn-primary btn-lg">Obtener enlace de descarga</button>
                     
                             <p id="ytmensaje"></p>
-                            <div id="yt-download-msg" style="display:none;">
+                            <div id="yt-download-msg" style="display:none;" class="mx-auto">
                                 <ul>
                                     <li>Una vez se genere la descarga haga click en el Boton <strong>Descargar</strong></li>
                                     <li>Se abrira una nueva pestaña con el video, haga click derecho sobre el video.</li>
@@ -56,12 +56,8 @@
                                     <li>Seleecione la carpeta de descargas</li>
                                     <li>Espere a que la descarga termine.</li>
                                 </ul>
+                                <br><hr>
                                 <div id="paypal-container-RVS3KTTUFMX6C"></div>
-                                <script>
-                                paypal.HostedButtons({
-                                    hostedButtonId: "RVS3KTTUFMX6C",
-                                }).render("#paypal-container-RVS3KTTUFMX6C")
-                                </script>
                             </div>
                         </form>
                         <a href="#" id="yt-download-btn" class="btn btn-primary btn-lg" style="display:none;" download>Descargar</a>
@@ -71,7 +67,7 @@
             <br>
             <div class="" id="fb-card">
                 <div class="card" id="logos">
-                    <div class="card-body" id="fb-card-body-pre" style="display: block;">
+                    <div class="card-body mx-auto" id="fb-card-body-pre" style="display: block;">
                         <a href="javascript:card.facebook();"><img src="{{ url_for('static', filename='images/facebook.png') }}" alt="Logo Facebook" class="img-fluid logos mx-auto" id="logo"/></a>
                     </div>
                     <div class="card-body" id="fb-card-body-post" style="display:none;">
@@ -91,12 +87,8 @@
                                     <li>Seleecione la carpeta de descargas</li>
                                     <li>Espere a que la descarga termine.</li>
                                 </ul>
+                                <br><hr>
                                 <div id="paypal-container-RVS3KTTUFMX6C"></div>
-                                <script>
-                                paypal.HostedButtons({
-                                    hostedButtonId: "RVS3KTTUFMX6C",
-                                }).render("#paypal-container-RVS3KTTUFMX6C")
-                                </script>
                             </div>
                         </form>
                         <a href="#" id="fb-download-btn" class="btn btn-primary btn-lg" style="display:none;" download>Descargar</a>
@@ -109,7 +101,7 @@
                     <div class="card-body" id="tt-card-body-pre" style="display: block;">
                         <a href="javascript:card.tiktok();"><img src="{{ url_for('static', filename='images/tiktok.png') }}" alt="Logo Tiktok" class="img-fluid logos mx-auto" id="logo"/></a>
                     </div>
-                    <div class="card-body" id="tt-card-body-post" style="display:none;">
+                    <div class="card-body  mx-auto" id="tt-card-body-post" style="display:none;">
                         <img src="{{ url_for('static', filename='images/tiktok.png') }}" alt="Logo Tiktok" class="img-fluid logos mx-auto" id="logo"/>
                         <h2>Descargar Video de TikTok</h2>    
                         <form id="tt-form" action="" onsubmit="return download.tiktok(event)">
@@ -126,12 +118,8 @@
                                     <li>Seleecione la carpeta de descargas</li>
                                     <li>Espere a que la descarga termine.</li>
                                 </ul>
+                                <br><hr>
                                 <div id="paypal-container-RVS3KTTUFMX6C"></div>
-                                <script>
-                                paypal.HostedButtons({
-                                    hostedButtonId: "RVS3KTTUFMX6C",
-                                }).render("#paypal-container-RVS3KTTUFMX6C")
-                                </script>
                             </div>
                         </form>
                         <a href="#" id="tt-download-btn" class="btn btn-primary btn-lg" style="display:none;" download>Descargar</a>
@@ -141,7 +129,7 @@
             <br>
             <div class="" id="ig-card">
                 <div class="card" id="logos">
-                    <div class="card-body" id="ig-card-body-pre" style="display: block;">
+                    <div class="card-body mx-auto" id="ig-card-body-pre" style="display: block;">
                         <a href="javascript:card.instagram();"><img src="{{ url_for('static', filename='images/instagram.jpg') }}" alt="Logo Instagram" class="img-fluid logos mx-auto" id="logo"/></a>
                     </div>
                     <div class="card-body" id="ig-card-body-post" style="display:none;">
@@ -161,12 +149,8 @@
                                     <li>Seleecione la carpeta de descargas</li>
                                     <li>Espere a que la descarga termine.</li>
                                 </ul>
-                                <div id="paypal-container-RVS3KTTUFMX6C"></div>
-                                <script>
-                                paypal.HostedButtons({
-                                    hostedButtonId: "RVS3KTTUFMX6C",
-                                }).render("#paypal-container-RVS3KTTUFMX6C")
-                                </script>
+                                <br><hr>
+                                <div id="paypal-container-RVS3KTTUFMX6C" class="justify-content-center mx-auto"></div>
                             </div>
                         </form>
                         <a href="#" id="ig-download-btn" class="btn btn-primary btn-lg" style="display:none;" download>Descargar</a>
@@ -191,5 +175,10 @@
     <script src="{{ url_for('static', filename='js/utils.js') }}"></script>
     <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script> 
     <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+    <script>
+        paypal.HostedButtons({
+            hostedButtonId: "RVS3KTTUFMX6C",
+        }).render("#paypal-container-RVS3KTTUFMX6C")
+        </script>
 </body>
 </html>
