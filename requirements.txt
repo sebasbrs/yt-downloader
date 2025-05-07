@@ -1,5 +1,5 @@
 Flask
 flask-cors
-pytubefix
+yt_dlp
 werkzeug
 gunicorn

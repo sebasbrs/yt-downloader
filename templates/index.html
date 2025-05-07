@@ -5,87 +5,191 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.png') }}">
-    <title>Youtube Video & Audio Download Tool</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 20px;
-        }
-        input, button {
-            margin: 10px;
-            padding: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
+    <script src="https://kit.fontawesome.com/39832e270f.js" crossorigin="anonymous"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=BAA5PIa7Yba3bRxcCwr2GU0r9wix-LQb0sTxr-vyJ2N9asOLo47QeeL0vg_exvPhqmoBmx6U6yC-Ss11MQ&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
+    <script src="https://publisher.linkvertise.com/cdn/linkvertise.js"></script><script>linkvertise(1334819, {whitelist: [], blacklist: ["video-downloader-free.up.railway.app"]});</script>
+    <title>Video & Audio Download Tool</title>
 </head>
-<body>
-    <h2>Descargar Video o Audio de YouTube</h2>
-    
-    <input type="text" id="url" placeholder="Ingrese la URL del video" size="50">
-    <br>
-    <label>
-        <input type="checkbox" id="solo_audio"> Descargar solo audio
-    </label>
-    <br>
-    <button onclick="descargar()">Obtener enlace de descarga</button>
-
-    <p id="mensaje"></p>
+<body class="container-fluid">
+    <div class="navi">
+        <nav class="navbar justify-content-center mx-auto fixed-top">
+            <a href="#" class="navbar-brand navi"><i class="fa-solid fa-cloud-arrow-down fa-bounce"></i> Video Downloader FREE</a>
+        </nav>
+    </div> 
+    <br><br><br><br>
+    <div class="row">
+        <div id="back">
+            <a href="javascript:reload();" class="btn btn-primary btn-lg"><i class="fa-solid fa-house fa-flip"></i> Volver</a>
+        </div>
+        <br>
+        <div class="col-2 mx-auto d-sm-block d-none">
+             <ins class="eas6a97888e2" data-zoneid="5606110"></ins> 
+        </div>
+        <div class="mx-auto d-lg-none d-xl-block d-xl-none">
+            <ins class="eas6a97888e10" data-zoneid="5606116"></ins> 
+        </div>
+        <div class="col-lg-8 col-md-12 col-sm-12 text-center">
+            <div class="" id="yt-card">
+                <div class="card" id="logos" >
+                    <div class="card-body" id="yt-card-body-pre" style="display: block;">
+                        <a href="javascript:card.youtube();"><img src="{{ url_for('static', filename='images/youtube.svg') }}" alt="Logo Youtube" class="img-fluid logos mx-auto" id="logo"/></a>
+                    </div>
+                    <div class="card-body" id="yt-card-body-post" style="display:none;">
+                        <img src="{{ url_for('static', filename='images/youtube.svg') }}" alt="Logo Youtube" class="img-fluid logos mx-auto" id="logo"/>
+                        <h2>Descargar Video o Audio de YouTube</h2>    
+                        <form id="yt-form" action="" onsubmit="return download.youtube(event)">
+                            <input type="text" id="yturl" placeholder="Ingrese la URL del video" size="50" class="form-control" required>
+                            <br>
+                            <label>
+                                <input type="checkbox" id="yttype" class="form-check-input"> Descargar solo audio
+                            </label>
+                            <br><br>
+                            <button type="submit" class="btn btn-primary btn-lg">Obtener enlace de descarga</button>
+                    
+                            <p id="ytmensaje"></p>
+                            <div id="yt-download-msg" style="display:none;">
+                                <ul>
+                                    <li>Una vez se genere la descarga haga click en el Boton <strong>Descargar</strong></li>
+                                    <li>Se abrira una nueva pestaña con el video, haga click derecho sobre el video.</li>
+                                    <li>Seleccione la opcion <strong>Guardar Video como...</strong></li>
+                                    <li>Seleecione la carpeta de descargas</li>
+                                    <li>Espere a que la descarga termine.</li>
+                                </ul>
+                                <div id="paypal-container-RVS3KTTUFMX6C"></div>
+                                <script>
+                                paypal.HostedButtons({
+                                    hostedButtonId: "RVS3KTTUFMX6C",
+                                }).render("#paypal-container-RVS3KTTUFMX6C")
+                                </script>
+                            </div>
+                        </form>
+                        <a href="#" id="yt-download-btn" class="btn btn-primary btn-lg" style="display:none;" download>Descargar</a>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="" id="fb-card">
+                <div class="card" id="logos">
+                    <div class="card-body" id="fb-card-body-pre" style="display: block;">
+                        <a href="javascript:card.facebook();"><img src="{{ url_for('static', filename='images/facebook.png') }}" alt="Logo Facebook" class="img-fluid logos mx-auto" id="logo"/></a>
+                    </div>
+                    <div class="card-body" id="fb-card-body-post" style="display:none;">
+                        <img src="{{ url_for('static', filename='images/facebook.png') }}" alt="Logo Facebook" class="img-fluid logos mx-auto" id="logo"/>
+                        <h2>Descargar Video o Reel de Facebook</h2>    
+                        <form id="fb-form" action="" onsubmit="return download.facebook(event)">
+                            <input type="text" id="fburl" placeholder="Ingrese la URL del video" size="50" class="form-control" required>
+                            <br><br>
+                            <button type="submit" class="btn btn-primary btn-lg">Obtener enlace de descarga</button>
+                    
+                            <p id="fbmensaje"></p>
+                            <div id="fb-download-msg" style="display:none;">
+                                <ul>
+                                    <li>Una vez se genere la descarga haga click en el Boton <strong>Descargar</strong></li>
+                                    <li>Se abrira una nueva pestaña con el video, haga click derecho sobre el video.</li>
+                                    <li>Seleccione la opcion <strong>Guardar Video como...</strong></li>
+                                    <li>Seleecione la carpeta de descargas</li>
+                                    <li>Espere a que la descarga termine.</li>
+                                </ul>
+                                <div id="paypal-container-RVS3KTTUFMX6C"></div>
+                                <script>
+                                paypal.HostedButtons({
+                                    hostedButtonId: "RVS3KTTUFMX6C",
+                                }).render("#paypal-container-RVS3KTTUFMX6C")
+                                </script>
+                            </div>
+                        </form>
+                        <a href="#" id="fb-download-btn" class="btn btn-primary btn-lg" style="display:none;" download>Descargar</a>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="" id="tt-card">
+                <div class="card" id="logos">
+                    <div class="card-body" id="tt-card-body-pre" style="display: block;">
+                        <a href="javascript:card.tiktok();"><img src="{{ url_for('static', filename='images/tiktok.png') }}" alt="Logo Tiktok" class="img-fluid logos mx-auto" id="logo"/></a>
+                    </div>
+                    <div class="card-body" id="tt-card-body-post" style="display:none;">
+                        <img src="{{ url_for('static', filename='images/tiktok.png') }}" alt="Logo Tiktok" class="img-fluid logos mx-auto" id="logo"/>
+                        <h2>Descargar Video de TikTok</h2>    
+                        <form id="tt-form" action="" onsubmit="return download.tiktok(event)">
+                            <input type="text" id="tturl" placeholder="Ingrese la URL del video" size="50" class="form-control" required>
+                            <br><br>
+                            <button type="submit" class="btn btn-primary btn-lg">Obtener enlace de descarga</button>
+                    
+                            <p id="ttmensaje"></p>
+                            <div id="tt-download-msg" style="display:none;">
+                                <ul>
+                                    <li>Una vez se genere la descarga haga click en el Boton <strong>Descargar</strong></li>
+                                    <li>Se abrira una nueva pestaña con el video, haga click derecho sobre el video.</li>
+                                    <li>Seleccione la opcion <strong>Guardar Video como...</strong></li>
+                                    <li>Seleecione la carpeta de descargas</li>
+                                    <li>Espere a que la descarga termine.</li>
+                                </ul>
+                                <div id="paypal-container-RVS3KTTUFMX6C"></div>
+                                <script>
+                                paypal.HostedButtons({
+                                    hostedButtonId: "RVS3KTTUFMX6C",
+                                }).render("#paypal-container-RVS3KTTUFMX6C")
+                                </script>
+                            </div>
+                        </form>
+                        <a href="#" id="tt-download-btn" class="btn btn-primary btn-lg" style="display:none;" download>Descargar</a>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="" id="ig-card">
+                <div class="card" id="logos">
+                    <div class="card-body" id="ig-card-body-pre" style="display: block;">
+                        <a href="javascript:card.instagram();"><img src="{{ url_for('static', filename='images/instagram.jpg') }}" alt="Logo Instagram" class="img-fluid logos mx-auto" id="logo"/></a>
+                    </div>
+                    <div class="card-body" id="ig-card-body-post" style="display:none;">
+                        <img src="{{ url_for('static', filename='images/instagram.jpg') }}" alt="Logo Instagram" class="img-fluid logos mx-auto" id="logo"/>
+                        <h2>Descargar Video o Reel de Instagram</h2>    
+                        <form id="ig-form" action="" onsubmit="return download.instagram(event)">
+                            <input type="text" id="igurl" placeholder="Ingrese la URL del video" size="50" class="form-control" required>
+                            <br><br>
+                            <button type="submit" class="btn btn-primary btn-lg">Obtener enlace de descarga</button>
+                    
+                            <p id="igmensaje"></p>
+                            <div id="ig-download-msg" style="display:none;">
+                                <ul>
+                                    <li>Una vez se genere la descarga haga click en el Boton <strong>Descargar</strong></li>
+                                    <li>Se abrira una nueva pestaña con el video, haga click derecho sobre el video.</li>
+                                    <li>Seleccione la opcion <strong>Guardar Video como...</strong></li>
+                                    <li>Seleecione la carpeta de descargas</li>
+                                    <li>Espere a que la descarga termine.</li>
+                                </ul>
+                                <div id="paypal-container-RVS3KTTUFMX6C"></div>
+                                <script>
+                                paypal.HostedButtons({
+                                    hostedButtonId: "RVS3KTTUFMX6C",
+                                }).render("#paypal-container-RVS3KTTUFMX6C")
+                                </script>
+                            </div>
+                        </form>
+                        <a href="#" id="ig-download-btn" class="btn btn-primary btn-lg" style="display:none;" download>Descargar</a>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <div class="d-sm-block d-none">
+                <ins class="eas6a97888e2" data-zoneid="5566982"></ins>
+            </div>
+            <div class="d-lg-none d-xl-block d-xl-none">
+                <ins class="eas6a97888e10" data-zoneid="5606116"></ins> 
+            </div>
+        </div>
+        <div class="col-2 mx-auto d-sm-block d-none"> <ins class="eas6a97888e2" data-zoneid="5606110"></ins> </div>
+    </div>
+    <footer>
+        <div class="text-center">Made with <i class="fa-solid fa-heart fa-beat"></i> by <a href="https://www.github.com/sebasbrs" target="_blank">Sebasbrs</a> <br></div>    
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  </body>
-    <script>
-        async function descargar() {
-    const url = document.getElementById("url").value;
-    const soloAudio = document.getElementById("solo_audio").checked;
-    const mensaje = document.getElementById("mensaje");
-
-    if (!url) {
-        mensaje.innerHTML = "⚠️ Ingresa una URL válida.";
-        return;
-    }
-
-    mensaje.innerHTML = "⏳ Procesando...";
-
-    try {
-        const response = await fetch("../download", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ url, solo_audio: soloAudio })
-        });
-
-        const data = await response.json();
-        if (!data.download_url) {
-            mensaje.innerHTML = "❌ Error al obtener el enlace.";
-            return;
-        }
-
-        // 🔹 Ahora descargamos el archivo correctamente evitando problemas de CORS
-        mensaje.innerHTML = "📥 Descargando...";
-
-        const fileResponse = await fetch(data.download_url, {
-            method: "GET",
-            headers: { "Accept": "application/octet-stream" }
-        });
-
-        const blob = await fileResponse.blob();
-
-        // Obtener el nombre del archivo desde el backend
-        const filename = data.download_url.split("/").pop(); 
-
-        // Crear un enlace temporal y forzar la descarga
-        const a = document.createElement("a");
-        a.href = URL.createObjectURL(blob);
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-
-        mensaje.innerHTML = "✅ Descarga completada.";
-
-    } catch (error) {
-        mensaje.innerHTML = "❌ Error de conexión.";
-    }
-}
-
-    </script>
+    <script src="{{ url_for('static', filename='js/forms.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/utils.js') }}"></script>
+    <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script> 
+    <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
 </body>
 </html>

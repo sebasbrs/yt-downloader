@@ -1,0 +1,29 @@
+nav {
+    background-color: #178b3a;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    display: flex; /* Cambia a flexbox */
+    justify-content: center; /* Centra horizontalmente el contenido */
+    align-items: center; /* Centra verticalmente el contenido */
+    text-align: center;
+    color: white;
+}
+.navi {
+    color: white;
+    font-size: 30px;
+}
+
+.logos {
+    width: 400px;
+    height: auto;
+}
+
+.card {
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    border-color: black;
+}
+
+.btn-primary {
+    background-color: #178b3a;
+    border-color: #147731;
+}
