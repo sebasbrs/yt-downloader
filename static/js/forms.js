@@ -7,6 +7,7 @@ var download = {
         const mensaje = document.getElementById("ytmensaje");
         const downloadBtn = document.getElementById("yt-download-btn");
         const downloadMsg = document.getElementById("yt-download-msg");
+        
 
         mensaje.innerHTML = "⏳ Procesando...";
         downloadMsg.style.display = "block";
