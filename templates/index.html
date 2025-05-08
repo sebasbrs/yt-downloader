@@ -62,7 +62,6 @@
                                     <li>Espere a que la descarga termine.</li>
                                 </ul>
                                 <br><hr>
-                                <div id="paypal-container-RVS3KTTUFMX6C"></div>
                             </div>
                         </form>
                         <a href="#" id="yt-download-btn" class="btn btn-primary btn-lg" style="display:none;" download>Descargar</a>
@@ -93,7 +92,6 @@
                                     <li>Espere a que la descarga termine.</li>
                                 </ul>
                                 <br><hr>
-                                <div id="paypal-container-RVS3KTTUFMX6C"></div>
                             </div>
                         </form>
                         <a href="#" id="fb-download-btn" class="btn btn-primary btn-lg" style="display:none;" download>Descargar</a>
@@ -124,7 +122,6 @@
                                     <li>Espere a que la descarga termine.</li>
                                 </ul>
                                 <br><hr>
-                                <div id="paypal-container-RVS3KTTUFMX6C"></div>
                             </div>
                         </form>
                         <a href="#" id="tt-download-btn" class="btn btn-primary btn-lg" style="display:none;" download>Descargar</a>
@@ -155,11 +152,21 @@
                                     <li>Espere a que la descarga termine.</li>
                                 </ul>
                                 <br><hr>
-                                <div id="paypal-container-RVS3KTTUFMX6C" class="justify-content-center mx-auto"></div>
                             </div>
                         </form>
                         <a href="#" id="ig-download-btn" class="btn btn-primary btn-lg" style="display:none;" download>Descargar</a>
                     </div>
+                </div>
+            </div>
+            <br>
+            <div class="card" id="paypal-card">
+                <div class="card-body" style="width: 100%;">
+                    <div id="paypal-container-RVS3KTTUFMX6C" class="mx-auto" style="width:350px"></div>
+                    <script>
+                        paypal.HostedButtons({
+                            hostedButtonId: "RVS3KTTUFMX6C",
+                        }).render("#paypal-container-RVS3KTTUFMX6C")
+                        </script>
                 </div>
             </div>
             <br><br>
@@ -180,10 +187,5 @@
     <script src="{{ url_for('static', filename='js/utils.js') }}"></script>
     <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script> 
     <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
-    <script>
-        paypal.HostedButtons({
-            hostedButtonId: "RVS3KTTUFMX6C",
-        }).render("#paypal-container-RVS3KTTUFMX6C")
-        </script>
 </body>
 </html>
